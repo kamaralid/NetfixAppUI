@@ -1,1 +1,40 @@
-<p>home works!</p>
+<div class="container text-left">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6 text-left bg-white rounded shadow py3">        
+        <form (ngSubmit)="onSubmit()" #myForm="ngForm" >
+            
+            <div ngModelGroup="userDetail" #userDetail="ngModelGroup">
+                <div class="form-group">
+                    <label for="username">Username*</label>
+                    <input type="text" class="form-control" placeholder="Enter Username" 
+                    name="username" required [(ngModel)]="username" > 
+                    <small *ngIf="username">Your UserName is {{username}} 
+                        <button type="button" class="btn btn-outline-success" >Set UserName</button>
+                    </small>             
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" placeholder="Enter Email" name = "email" 
+                    required email ngModel #email="ngModel">              
+                    <small *ngIf="!email.valid && email.touched" 
+                    class="text-danger">Please Enter Valid Email</small>
+                </div>
+                <small class="text-danger" 
+                *ngIf="!userDetail.valid && userDetail.touched">Please enter valid details</small>
+            </div>
+
+            <div class="form-group">
+              <label for="course">Select Course</label>
+              <select class="form-control" id="course" name="course" required [ngModel]="defaultCourse">
+                  <option value="Angular">Angular</option>
+                  <option value="Html">HTML</option>
+                  <option value="JavaScript">Javascript</option>
+                  <option value="Microservice">Microservice</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-outline-success" [disabled]="!myForm.valid">Submit</button>
+          </form>
+    
+        </div>
+    </div>
+</div>
